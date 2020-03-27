@@ -21,7 +21,7 @@ import logging
 import torch
 
 from transformers import BertConfig, BertForSequenceClassification
-from modeling_bert import *
+from .modeling_bert import *
 
 
 logging.basicConfig(level=logging.INFO)
