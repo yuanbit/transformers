@@ -20,7 +20,8 @@ import logging
 
 import torch
 
-from transformers import BertConfig, BertForPreTraining, load_tf_weights_in_bert, BertForSequenceClassification
+from transformers import BertConfig, BertForSequenceClassification
+from modeling_bert import *
 
 
 logging.basicConfig(level=logging.INFO)
