@@ -84,8 +84,8 @@ def load_tf_weights_in_bert(model, config, tf_checkpoint_path):
         arrays.append(array)
 
     for name, array in zip(names, arrays):
-        # if name in ['output_weights', 'output_bias']:
-        #     name = 'classifier/' + name
+        if name in ['output_weights', 'output_bias']:
+            name = 'classifier/' + name
         name = name.split("/")
         # adam_v and adam_m are variables used in AdamWeightDecayOptimizer to calculated m and v
         # which are not required for using pretrained model
@@ -104,10 +104,10 @@ def load_tf_weights_in_bert(model, config, tf_checkpoint_path):
             if scope_names[0] == "kernel" or scope_names[0] == "gamma":
                 pointer = getattr(pointer, "weight")
             elif scope_names[0] == "output_bias" or scope_names[0] == "beta":
-                pointer = getattr(pointer, 'cls')
-                # pointer = getattr(pointer, "bias")
+                # pointer = getattr(pointer, 'cls')
+                pointer = getattr(pointer, "bias")
             elif scope_names[0] == "output_weights":
-                pointer = getattr(pointer, 'cls')
+                # pointer = getattr(pointer, 'cls')
                 pointer = getattr(pointer, "weight")
             elif scope_names[0] == "squad":
                 pointer = getattr(pointer, "classifier")
