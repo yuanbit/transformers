@@ -29,9 +29,9 @@ logging.basicConfig(level=logging.INFO)
 def convert_tf_checkpoint_to_pytorch(tf_checkpoint_path, bert_config_file, pytorch_dump_path):
     # Initialise PyTorch model
     config = BertConfig.from_json_file(bert_config_file)
-    config.num_labels = 2
+    # config.num_labels = 2
     print("Building PyTorch model from configuration: {}".format(str(config)))
-    model = BertForSequenceClassification(config)
+    model = BertForSequenceClassification(config, 2)
 
 
     # Load weights from tf checkpoint
