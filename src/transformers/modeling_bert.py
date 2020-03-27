@@ -104,11 +104,11 @@ def load_tf_weights_in_bert(model, config, tf_checkpoint_path):
             if scope_names[0] == "kernel" or scope_names[0] == "gamma":
                 pointer = getattr(pointer, "weight")
             elif scope_names[0] == "output_bias" or scope_names[0] == "beta":
+                pointer = getattr(pointer, 'cls')
                 pointer = getattr(pointer, "bias")
-                # pointer = getattr(pointer, 'cls')
             elif scope_names[0] == "output_weights":
+                pointer = getattr(pointer, 'cls')
                 pointer = getattr(pointer, "weight")
-                # pointer = getattr(pointer, 'cls')
             elif scope_names[0] == "squad":
                 pointer = getattr(pointer, "classifier")
             else:
